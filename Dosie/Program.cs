@@ -17,7 +17,7 @@ namespace DosieProgram
                 Console.WriteLine("Для начало работы нажмите на любую клавишу");
                 Console.ReadKey();
                 Console.Clear();
-                dosie.CortSoldier();
+                dosie.GetInfoSoldier();
                 Console.WriteLine($"\nВы хотите выйти из программы?Нажмите {exitButton}.\nДля продолжение работы нажмите любую другую клавишу");
 
                 if (Console.ReadKey().Key == exitButton)
@@ -35,7 +35,7 @@ namespace DosieProgram
     {
         private List<Soldier> _soldiers;
 
-        public Dosie() 
+        public Dosie()
         {
             _soldiers = new List<Soldier>()
             {
@@ -47,19 +47,11 @@ namespace DosieProgram
             };
         }
 
-        public void CortSoldier() 
+        public void GetInfoSoldier()
         {
-            Console.WriteLine("Введите используемое оружие солдатом");
-            string weaponName = Console.ReadLine();
-            Console.WriteLine("Введите срок службы солдата");
-            int.TryParse(Console.ReadLine(), out int serviceLifeSoldier);
-            var filterSoldiers = _soldiers.Where(soldier => soldier.Weapon == weaponName && soldier.ServiceLife == serviceLifeSoldier);
-            ShowInfo(filterSoldiers);
-        }
+            var filterSoldiers = _soldiers.Select(soldier => new { soldier.Name, soldier.Title });
 
-        private void ShowInfo(IEnumerable<Soldier> _cortSoldier)
-        {
-            foreach(var soldier in _cortSoldier)
+            foreach (var soldier in filterSoldiers)
             {
                 Console.WriteLine($"Имя  солдата - {soldier.Name} , Звание - {soldier.Title}");
             }
@@ -68,7 +60,7 @@ namespace DosieProgram
 
     class Soldier
     {
-        public Soldier(string name,string weapon,string title,int serviceLife) 
+        public Soldier(string name, string weapon, string title, int serviceLife)
         {
             Name = name;
             Weapon = weapon;
@@ -76,9 +68,9 @@ namespace DosieProgram
             ServiceLife = serviceLife;
         }
 
-        public string Name { get;private set; }
-        public string Weapon {  get;private set; }
-        public string Title { get;private set; }
-        public int ServiceLife { get;private set; }
+        public string Name { get; private set; }
+        public string Weapon { get; private set; }
+        public string Title { get; private set; }
+        public int ServiceLife { get; private set; }
     }
 }
