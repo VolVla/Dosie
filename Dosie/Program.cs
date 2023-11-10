@@ -1,14 +1,14 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DosieProgram
+namespace DossierProgram
 {
     internal class Program
     {
         static void Main()
         {
-            Dosie dosie = new Dosie();
+            Dossier dossier = new Dossier();
             ConsoleKey exitButton = ConsoleKey.Enter;
             bool isWork = true;
 
@@ -17,7 +17,7 @@ namespace DosieProgram
                 Console.WriteLine("Для начало работы нажмите на любую клавишу");
                 Console.ReadKey();
                 Console.Clear();
-                dosie.GetInfoSoldier();
+                dossier.GetInfoSoldier();
                 Console.WriteLine($"\nВы хотите выйти из программы?Нажмите {exitButton}.\nДля продолжение работы нажмите любую другую клавишу");
 
                 if (Console.ReadKey().Key == exitButton)
@@ -31,11 +31,11 @@ namespace DosieProgram
         }
     }
 
-    class Dosie
+    class Dossier
     {
         private List<Soldier> _soldiers;
 
-        public Dosie()
+        public Dossier()
         {
             _soldiers = new List<Soldier>()
             {
